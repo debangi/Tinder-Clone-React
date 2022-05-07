@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../firebase-config';
 
 import './TinderCards.css';
 
 function TinderCards() {
-  const [people, setPeople] = useState([
-    {
-      name: 'Mark Zuckerberg',
-      url: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg',
-    },
-    {
-      name: 'Steve Jobs',
-      url: 'https://upload.wikimedia.org/wikipedia/commons/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg',
-    },
-  ]);
+  const [people, setPeople] = useState([]);
 
-  const onSwipe = (direction) => {
-    console.log('You swiped: ' + direction);
-  };
-  const onCardLeftScreen = (myIdentifier) => {
-    console.log(myIdentifier + ' left the screen');
-  };
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'people'), (snapshot) => {
+      setPeople(
+        snapshot.docs.map((doc) => ({
+          name: doc.data().name,
+          url: doc.data().url,
+        }))
+      );
+    });
+    return unsubscribe;
+  }, []);
+  console.log(people);
 
   return (
     <div className='tinderCards'>
@@ -29,8 +28,6 @@ function TinderCards() {
           <TinderCard
             key={person.name}
             className='swipe'
-            onSwipe={onSwipe}
-            onCardLeftScreen={() => onCardLeftScreen('fooBar')}
             preventSwipe={['up', 'down']}
           >
             <div
