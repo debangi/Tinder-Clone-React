@@ -1,9 +1,10 @@
 import React from 'react';
+import TinderCards from './TinderCards';
 
 function Home() {
   return (
     <div>
-      <h1>I am Homepage</h1>
+      <TinderCards />
     </div>
   );
 }
