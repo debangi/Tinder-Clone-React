@@ -8,12 +8,11 @@ function App() {
   return (
     <div className='app'>
       <Routes>
-        <Route path='/' element={<Header />}>
+        <Route path='/' element={<Header backButton='/' />}>
           <Route index element={<Home />} />
           <Route path='/chat' element={<Chat />} />
         </Route>
       </Routes>
-      {/* Buttons below Tinder cards */}
 
       {/* Chats screen */}
       {/* Individual chat screen */}
