@@ -10,19 +10,21 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 function Header({ backButton }) {
   const currentPath = useLocation();
   const navigate = useNavigate();
+
   return (
     <Fragment>
       <div className='header'>
-        {currentPath.pathname === '/chat' ? (
-          <IconButton onClick={() => navigate(`${backButton}`)}>
+        {currentPath.pathname === '/' && (
+          <IconButton>
+            <PersonIcon className='header__icon' fontSize='large' />
+          </IconButton>
+        )}
+        {currentPath.pathname === '/chat' && (
+          <IconButton onClick={() => navigate('/')}>
             <ArrowBackIosIcon
               className='header__icon'
               fontSize='large'
             ></ArrowBackIosIcon>
-          </IconButton>
-        ) : (
-          <IconButton>
-            <PersonIcon className='header__icon' fontSize='large' />
           </IconButton>
         )}
 
