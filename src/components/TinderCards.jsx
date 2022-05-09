@@ -19,7 +19,6 @@ function TinderCards() {
     });
     return unsubscribe;
   }, []);
-  console.log(people);
 
   return (
     <div className='tinderCards'>

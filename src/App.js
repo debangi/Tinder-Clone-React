@@ -13,7 +13,6 @@ function App() {
           <Route path='/chat' element={<Chat />} />
         </Route>
       </Routes>
-      {/* Tinder Cards */}
       {/* Buttons below Tinder cards */}
 
       {/* Chats screen */}
@@ -23,3 +22,5 @@ function App() {
 }
 
 export default App;
+
+//2:00
